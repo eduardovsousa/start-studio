@@ -18,7 +18,6 @@ import img10 from "../assets/Images/10.webp";
 const Section = styled(motion.section)`
   min-height: 100vh;
   height: auto;
-  /* width: 80vw; */
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
@@ -27,15 +26,12 @@ const Section = styled(motion.section)`
   align-items: flex-start;
 
   position: relative;
-
-  /* background-color: orange; */
 `;
 
 const Title = styled.h1`
   font-size: ${(props) => props.theme.fontxxxl};
   font-family: "Kaushan Script";
   font-weight: 300;
-  /* text-transform: capitalize; */
   color: ${(props) => props.theme.text};
   text-shadow: 1px 1px 1px ${(props) => props.theme.body};
 
@@ -92,7 +88,6 @@ const Left = styled.div`
   }
 `;
 const Right = styled.div`
-  /* width: 65%; */
   position: absolute;
   left: 35%;
   padding-left: 30%;
@@ -107,7 +102,6 @@ const Right = styled.div`
 const Item = styled(motion.div)`
   display: inline-block;
   width: 20rem;
-  /* background-color: black; */
   margin-right: 6rem;
   img {
     width: 100%;
