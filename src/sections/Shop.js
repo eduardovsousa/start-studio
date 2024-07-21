@@ -119,7 +119,7 @@ const Item = styled(motion.div)`
     width: 15rem;
   }
 `;
-//data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal"
+
 const Product = ({ img, title = "" }) => {
   return (
     // x: 100, y: -100

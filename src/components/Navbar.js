@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {motion} from 'framer-motion/dist/framer-motion';
+import { motion } from "framer-motion/dist/framer-motion";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 const NavContainer = styled(motion.div)`
   width: 100vw;
   z-index: 6;
   position: absolute;
-  top: ${props => props.click ? '0' : `-${props.theme.navHeight}`};
+  top: ${(props) => (props.click ? "0" : `-${props.theme.navHeight}`)};
 
   display: flex;
   justify-content: center;
@@ -17,9 +18,9 @@ const NavContainer = styled(motion.div)`
 
 const MenuItems = styled(motion.ul)`
   position: relative;
-  height: ${props => props.theme.navHeight};
-  background-color: ${props => props.theme.body};
-  color: ${props => props.theme.text};
+  height: ${(props) => props.theme.navHeight};
+  background-color: ${(props) => props.theme.body};
+  color: ${(props) => props.theme.text};
   list-style: none;
 
   display: flex;
@@ -31,9 +32,9 @@ const MenuItems = styled(motion.ul)`
 `;
 
 const MenuBtn = styled.li`
-  background-color: ${props => `rgba(${props.theme.textRgba},0.7)`};
+  background-color: ${(props) => `rgba(${props.theme.textRgba},0.7)`};
   list-style: style none;
-  color: ${props => props.theme.body};
+  color: ${(props) => props.theme.body};
   width: 15rem;
   height: 2.5rem;
 
@@ -48,7 +49,7 @@ const MenuBtn = styled.li`
   justify-content: center;
   align-items: center;
 
-  font-size: ${props => props.theme.fontmd};
+  font-size: ${(props) => props.theme.fontmd};
   font-weight: 600;
   text-transform: uppercase;
 
@@ -57,24 +58,38 @@ const MenuBtn = styled.li`
 
 const MenuItem = styled(motion.li)`
   text-transform: uppercase;
-  color: ${props => props.theme.text};
+  color: ${(props) => props.theme.text};
   cursor: pointer;
 `;
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
 
+  const { scroll } = useLocomotiveScroll();
+
+  const handleScroll = (id) => {
+    let elem = document.querySelector(id);
+    setClick(!click);
+    
+    scroll.scrollTo(elem, {
+      offset: "-100",
+      duration: "2000",
+      easing: [0.25, 0.0, 0.35, 1.0],
+    });
+  };
+
   return (
     <NavContainer
       click={click}
       initial={{
-        y: '-100%',
+        y: "-100%",
       }}
       animate={{
-        y: 0
+        y: 0,
       }}
       transition={{
-        duration: 2, delay: 2,
+        duration: 2,
+        delay: 2,
       }}
     >
       <MenuItems
@@ -88,21 +103,33 @@ const Navbar = () => {
       >
         <MenuBtn onClick={() => setClick(!click)}>Menu</MenuBtn>
         <MenuItem
-          whileHover={{scale:1.1,y:-5}}
-          whileTap={{scale:0.9,Y: 0}}
-        >Home</MenuItem>
+        onClick={() => handleScroll("#home")}
+          whileHover={{ scale: 1.1, y: -5 }}
+          whileTap={{ scale: 0.9, Y: 0 }}
+        >
+          Home
+        </MenuItem>
         <MenuItem
-          whileHover={{scale:1.1,y:-5}}
-          whileTap={{scale:0.9,Y: 0}}
-        >Sobre</MenuItem>
+        onClick={() => handleScroll(".about")}
+          whileHover={{ scale: 1.1, y: -5 }}
+          whileTap={{ scale: 0.9, Y: 0 }}
+        >
+          Sobre
+        </MenuItem>
         <MenuItem
-          whileHover={{scale:1.1,y:-5}}
-          whileTap={{scale:0.9,Y: 0}}
-        >Shop</MenuItem>
+        onClick={() => handleScroll("#shop")}
+          whileHover={{ scale: 1.1, y: -5 }}
+          whileTap={{ scale: 0.9, Y: 0 }}
+        >
+          Nova Coleção
+        </MenuItem>
         <MenuItem
-          whileHover={{scale:1.1,y:-5}}
-          whileTap={{scale:0.9,Y: 0}}
-        >Nova coleção</MenuItem>
+        onClick={() => handleScroll(".new-arrival")}
+          whileHover={{ scale: 1.1, y: -5 }}
+          whileTap={{ scale: 0.9, Y: 0 }}
+        >
+          Lançamentos
+        </MenuItem>
       </MenuItems>
     </NavContainer>
   );
