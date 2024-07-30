@@ -7,6 +7,7 @@ import img3 from "../assets/Images/13.webp";
 import img4 from "../assets/Images/14.webp";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { motion } from "framer-motion/dist/framer-motion";
 
 const Section = styled.section`
   min-height: 100vh;
@@ -80,7 +81,7 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.h1`
+const Title = styled(motion.h1)`
   font-size: ${(props) => props.theme.fontxxxl};
   font-family: "Kaushan Script";
   font-weight: 300;
@@ -99,7 +100,6 @@ const Title = styled.h1`
     font-size: ${(props) => props.theme.fontxl};
   }
 `;
-
 const Text = styled.div`
   width: 20%;
   font-size: ${(props) => props.theme.fontlg};
@@ -128,7 +128,6 @@ const Item = styled.div`
     z-index: 5;
   }
 `;
-
 const Photos = ({ img, name }) => {
   return (
     <Item>

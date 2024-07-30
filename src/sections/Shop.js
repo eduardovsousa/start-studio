@@ -122,7 +122,6 @@ const Item = styled(motion.div)`
 
 const Product = ({ img, title = "" }) => {
   return (
-    // x: 100, y: -100
     <Item
       initial={{ filter: "grayscale(100%)" }}
       whileInView={{ filter: "grayscale(0%)" }}
@@ -155,11 +154,9 @@ const Shop = () => {
           trigger: element,
           start: "top top",
           end: `${pinWrapWidth} bottom`,
-          scroller: ".App", //locomotive-scroll
+          scroller: ".App",
           scrub: 1,
           pin: true,
-          // markers: true,
-          // anticipatePin: 1,
         },
         height: `${scrollingElement.scrollWidth}px`,
         ease: "none",
@@ -170,9 +167,8 @@ const Shop = () => {
           trigger: scrollingElement,
           start: "top top",
           end: `${pinWrapWidth} bottom`,
-          scroller: ".App", //locomotive-scroll
+          scroller: ".App",
           scrub: 1,
-          // markers: true,
         },
         x: -pinWrapWidth,
 

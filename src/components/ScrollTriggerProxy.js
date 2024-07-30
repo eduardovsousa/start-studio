@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { useEffect } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 const ScrollTriggerProxy = () => {
@@ -12,7 +12,6 @@ const ScrollTriggerProxy = () => {
       const element = scroll?.el;
 
       scroll.on("scroll", ScrollTrigger.update);
-
       ScrollTrigger.scrollerProxy(element, {
         scrollTop(value) {
           return arguments.length
@@ -27,9 +26,7 @@ const ScrollTriggerProxy = () => {
             height: window.innerHeight,
           };
         },
-        pinType: element.style.transform
-          ? "transform"
-          : "fixed",
+        pinType: element.style.transform ? "transform" : "fixed",
       });
     }
 

@@ -7,13 +7,13 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 const Section = styled.section`
   min-height: 100vh;
-  width: 100vw;
-  margin: 5rem auto;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.text};
@@ -33,44 +33,59 @@ const LogoContainer = styled.div`
   }
 
   h3 {
-    font-size: ${(props) => props.theme.fontexl};
     font-family: "Kaushan Script";
+    font-size: ${(props) => props.theme.fontxxl};
+
+    @media (max-width: 48em) {
+      font-size: ${(props) => props.theme.fontxl};
+    }
   }
 `;
 
 const FooterComponent = styled(motion.footer)`
   width: 80vw;
 
+  @media (max-width: 48em) {
+    width: 90vw;
+  }
   ul {
     list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: 2rem;
+    flex-wrap: wrap;
     margin: 2rem;
     margin-top: 4rem;
     padding: 0 1rem;
     border-top: 1px solid ${(props) => props.theme.text};
     border-bottom: 1px solid ${(props) => props.theme.text};
+
+    @media (max-width: 48em) {
+      justify-content: center;
+    }
   }
 
   li {
     padding: 2rem;
-    font-size: ${(props) => props.theme.fontelg};
+    font-size: ${(props) => props.theme.fontlg};
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
-
     &:hover {
       transform: scale(1.1);
+    }
+
+    @media (max-width: 48em) {
+      padding: 1rem;
+      font-size: ${(props) => props.theme.fontmd};
     }
   }
 `;
 
 const Bottom = styled.div`
-  padding: 0%.5rem 0;
+  padding: 0.5rem 0;
   margin: 0 4rem;
-  font-size: ${(props) => props.theme.fontelg};
+  font-size: ${(props) => props.theme.fontlg};
 
   display: flex;
   justify-content: space-between;
@@ -78,6 +93,18 @@ const Bottom = styled.div`
 
   a {
     text-decoration: underline;
+  }
+
+  @media (max-width: 64em) {
+    flex-direction: column;
+    justify-content: center;
+    span {
+      transform: none !important;
+    }
+  }
+
+  @media (max-width: 48em) {
+    font-size: ${(props) => props.theme.fontmd};
   }
 `;
 
@@ -123,7 +150,7 @@ export default function Footer() {
             data-scroll-speed="2"
             data-scroll-direction="horizontal"
           >
-            &copy; {new Date().getFullYear()}. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()}.Todos os direitos reservados.
           </span>
           <span
             data-scroll

@@ -4,39 +4,29 @@ import { motion } from "framer-motion/dist/framer-motion";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 const NavContainer = styled(motion.div)`
-  width: 100vw;
-  z-index: 6;
   position: absolute;
   top: ${(props) => (props.click ? "0" : `-${props.theme.navHeight}`)};
+  transition: all 0.3s ease;
+  z-index: 6;
+  width: 100vw;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  transition: all 0.3s ease;
-`;
-
-const MenuItems = styled(motion.ul)`
-  position: relative;
-  height: ${(props) => props.theme.navHeight};
-  background-color: ${(props) => props.theme.body};
-  color: ${(props) => props.theme.text};
-  list-style: none;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  width: 100%;
-  padding: 0 10rem;
+  @media (max-width: 40em) {
+    top: ${(props) => (props.click ? "0" : `calc(-50vh - 4rem)`)};
+  }
 `;
 
 const MenuBtn = styled.li`
   background-color: ${(props) => `rgba(${props.theme.textRgba},0.7)`};
-  list-style: style none;
   color: ${(props) => props.theme.body};
   width: 15rem;
   height: 2.5rem;
+
+  border: none;
+  outline: none;
 
   clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
 
@@ -45,21 +35,51 @@ const MenuBtn = styled.li`
   left: 50%;
   transform: translateX(-50%);
 
+  font-size: ${(props) => props.theme.fontmd};
+  font-weight: 600;
+
+  cursor: pointer;
+
   display: flex;
   justify-content: center;
   align-items: center;
 
-  font-size: ${(props) => props.theme.fontmd};
-  font-weight: 600;
-  text-transform: uppercase;
+  transition: all 0.3s ease;
 
-  cursor: pointer;
+  @media (max-width: 40em) {
+    width: 10rem;
+    height: 2rem;
+  }
 `;
 
-const MenuItem = styled(motion.li)`
+const MenuItems = styled(motion.ul)`
+  position: relative;
+  height: ${(props) => props.theme.navHeight};
+  background-color: ${(props) => props.theme.body};
+  color: ${(props) => props.theme.text};
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+
+  width: 100%;
+  padding: 0 10rem;
+
+  @media (max-width: 40em) {
+    flex-direction: column;
+    padding: 2rem 0;
+    height: 50vh;
+  }
+`;
+
+const Item = styled(motion.li)`
   text-transform: uppercase;
   color: ${(props) => props.theme.text};
-  cursor: pointer;
+
+  @media (max-width: 40em) {
+    flex-direction: column;
+    padding: 0.5rem 0;
+  }
 `;
 
 const Navbar = () => {
@@ -70,7 +90,7 @@ const Navbar = () => {
   const handleScroll = (id) => {
     let elem = document.querySelector(id);
     setClick(!click);
-    
+
     scroll.scrollTo(elem, {
       offset: "-100",
       duration: "2000",
@@ -102,34 +122,34 @@ const Navbar = () => {
         dragSnapToOrigin
       >
         <MenuBtn onClick={() => setClick(!click)}>Menu</MenuBtn>
-        <MenuItem
-        onClick={() => handleScroll("#home")}
+        <Item
+          onClick={() => handleScroll("#home")}
           whileHover={{ scale: 1.1, y: -5 }}
           whileTap={{ scale: 0.9, Y: 0 }}
         >
           Home
-        </MenuItem>
-        <MenuItem
-        onClick={() => handleScroll(".about")}
+        </Item>
+        <Item
+          onClick={() => handleScroll(".about")}
           whileHover={{ scale: 1.1, y: -5 }}
           whileTap={{ scale: 0.9, Y: 0 }}
         >
           Sobre
-        </MenuItem>
-        <MenuItem
-        onClick={() => handleScroll("#shop")}
+        </Item>
+        <Item
+          onClick={() => handleScroll("#shop")}
           whileHover={{ scale: 1.1, y: -5 }}
           whileTap={{ scale: 0.9, Y: 0 }}
         >
           Nova Coleção
-        </MenuItem>
-        <MenuItem
-        onClick={() => handleScroll(".new-arrival")}
+        </Item>
+        <Item
+          onClick={() => handleScroll(".new-arrival")}
           whileHover={{ scale: 1.1, y: -5 }}
           whileTap={{ scale: 0.9, Y: 0 }}
         >
           Lançamentos
-        </MenuItem>
+        </Item>
       </MenuItems>
     </NavContainer>
   );
