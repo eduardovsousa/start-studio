@@ -157,7 +157,7 @@ export default function Footer() {
             data-scroll-speed="-2"
             data-scroll-direction="horizontal"
           >
-            Feiti com &hearts; por &nbsp;
+            Feito com &hearts; por &nbsp;
             <a
               href="https://www.linkedin.com/in/eduardovsousa/"
               target="_blank"
